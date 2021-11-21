@@ -1,0 +1,17 @@
+
+
+name: semgrep
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        name: install python3.9
+        with:
+          python-version: 3.9
+      - run: pip install semgrep
+        name: install semgrep
+      - run: semgrep --config "p/bandit"
+        name: semgrep bandit
